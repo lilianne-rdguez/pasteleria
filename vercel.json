@@ -35,15 +35,19 @@
   ],
   "routes": [
     {
-      "src": "/api/macarons",
+      "src": "^/api/macarons$",
       "dest": "/server.js"
     },
     {
-      "src": "/admin",
+      "src": "^/admin$",
       "dest": "/admin.html"
     },
     {
-      "src": "/(.*)",
+      "src": "^/$",
+      "dest": "/micafe.html"
+    },
+    {
+      "src": "^/(.*)$",
       "dest": "/$1"
     }
   ]
