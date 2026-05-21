@@ -21,9 +21,29 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
+// Función para obtener la ruta del archivo de datos. 
+// En Vercel (servidor de solo lectura), usamos la carpeta temporal /tmp.
+const getFilePath = () => {
+  const isVercel = process.env.VERCEL === '1' || !!process.env.VERCEL;
+  const filePath = isVercel
+    ? path.join('/tmp', 'macarons.json')
+    : path.join(__dirname, 'macarons.json');
+
+  if (isVercel && !fs.existsSync(filePath)) {
+    try {
+      const defaultPath = path.join(__dirname, 'macarons.json');
+      fs.copyFileSync(defaultPath, filePath);
+      console.log('Copiado macarons.json de plantilla a /tmp para Vercel.');
+    } catch (err) {
+      console.error('Error al copiar macarons.json a /tmp:', err);
+    }
+  }
+  return filePath;
+};
+
 // Endpoint GET para obtener los macarons del archivo JSON
 app.get('/api/macarons', (req, res) => {
-  const filePath = path.join(__dirname, 'macarons.json');
+  const filePath = getFilePath();
   
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
@@ -49,7 +69,7 @@ app.get('/api/macarons', (req, res) => {
 // Endpoint POST para guardar los datos modificados en el archivo macarons.json
 app.post('/api/macarons', (req, res) => {
   const macaronsNuevos = req.body;
-  const filePath = path.join(__dirname, 'macarons.json');
+  const filePath = getFilePath();
 
   // Validaciones básicas de seguridad y formato
   if (!Array.isArray(macaronsNuevos)) {
