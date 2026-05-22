@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>L'Héritage d'Antoine - Macarons de Lujo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+
+  <!-- Google Fonts para tipografía premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #fcf9f9;
+      --bg-accent: #fff0f2;
+      --text-main: #2f2525;
+      --text-muted: #7c6868;
+      --accent-pink: #d87093;
+      --accent-pink-dark: #b84c70;
+      --accent-gold: #dfb284;
+      --accent-green: #48bb78;
+      --card-bg: #ffffff;
+      --border-color: #ffdce2;
+      --shadow-soft: 0 8px 30px rgba(216, 112, 147, 0.06);
+      --shadow-hover: 0 15px 35px rgba(216, 112, 147, 0.15);
+      --font-display: 'Playfair Display', serif;
+      --font-sans: 'Outfit', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-display);
+      color: var(--text-main);
+    }
+
+    /* BARRA DE NAVEGACIÓN GLASSMORPHISM */
+    .w3-top {
+      z-index: 1000;
+    }
+
+    .navbar-container {
+      background-color: rgba(255, 255, 255, 0.85) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      padding: 12px 24px !important;
+    }
+
+    .brand-link {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--accent-pink-dark) !important;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .brand-link:hover {
+      color: var(--accent-pink) !important;
+      background: transparent !important;
+    }
+
+    .nav-link {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      color: var(--text-main) !important;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease !important;
+      border-radius: 20px;
+      padding: 8px 16px !important;
+      margin: 0 2px;
+    }
+
+    .nav-link:hover {
+      background-color: var(--bg-accent) !important;
+      color: var(--accent-pink-dark) !important;
+    }
+
+    .nav-link-admin {
+      background-color: var(--accent-pink) !important;
+      color: white !important;
+      font-weight: 600;
+      border-left: none !important;
+      margin-left: 10px !important;
+      box-shadow: 0 4px 10px rgba(216, 112, 147, 0.2);
+    }
+
+    .nav-link-admin:hover {
+      background-color: var(--accent-pink-dark) !important;
+      color: white !important;
+      transform: translateY(-1px);
+    }
+
+    /* MENÚ MÓVIL */
+    #navDemo {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 10px 0;
+    }
+
+    #navDemo .w3-bar-item {
+      padding: 12px 24px !important;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 14px;
+      color: var(--text-main);
+      transition: all 0.2s;
+    }
+
+    #navDemo .w3-bar-item:hover {
+      background-color: var(--bg-accent);
+      color: var(--accent-pink-dark);
+    }
+
+    /* HERO SECTION STYLES */
+    .hero-section {
+      position: relative;
+      height: 80vh;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-image: url('Macarons-px-1200-01-1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: scroll;
+      color: white;
+      margin-top: 60px;
+      overflow: hidden;
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg,
+          rgba(47, 37, 37, 0.85) 0%,
+          rgba(216, 112, 147, 0.45) 50%,
+          rgba(47, 37, 37, 0.85) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: heroSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: 1px !important;
+      color: #ffffff;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-description {
+      font-family: var(--font-sans);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 35px;
+      max-width: 650px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-cta-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-btn {
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .hero-btn-primary {
+      background-color: var(--accent-pink);
+      color: white;
+      box-shadow: 0 4px 15px rgba(216, 112, 147, 0.35);
+      border: 2px solid transparent;
+    }
+
+    .hero-btn-primary:hover {
+      background-color: var(--accent-pink-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(216, 112, 147, 0.55);
+    }
+
+    .hero-btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-color: white;
+      transform: translateY(-2px);
+    }
+
+    /* EDITORIAL ABOUT SECTION */
+    .about-container {
+      background-color: white;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-soft);
+      padding: 50px;
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+
+    .about-image-wrapper {
+      position: relative;
+      padding: 10px;
+    }
+
+    .about-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--accent-gold);
+      border-radius: 16px;
+      transform: translate(-10px, -10px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .about-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 12px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .about-content {
+      padding: 20px 40px;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--accent-pink-dark);
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      color: var(--text-main);
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+
+    .about-text {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    /* VITRINA DE MACARONS (REJILLA GRID) */
+    .vitrina-section {
+      padding: 60px 40px !important;
+      text-align: center;
+      background: var(--bg-accent) !important;
+      margin-top: 80px;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .vitrina-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .macaron-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250px;
+    }
+
+    .macaron-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-pink);
+    }
+
+    .macaron-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .badge-active {
+      background-color: #e6fffa;
+      color: #234e52;
+    }
+
+    .badge-empty {
+      background-color: #fff5f5;
+      color: #742a2a;
+    }
+
+    .macaron-title {
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-weight: bold;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .macaron-desc {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+      min-height: 45px;
+    }
+
+    .macaron-price {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--accent-pink-dark);
+    }
+
+    /* GALERÍA DE IMÁGENES GOURMET */
+    .galeria-section {
+      margin-top: 80px;
+      margin-bottom: 80px;
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .galeria-item {
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      height: 220px;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .galeria-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .galeria-item:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .galeria-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* SLIDESHOW PRODUCTOS */
+    .slides-container {
+      margin-top: 80px;
+      margin-bottom: 80px;
+      background-color: white;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-soft);
+      padding: 40px;
+    }
+
+    .mySlides {
+      display: none;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      height: 450px;
+    }
+
+    .mySlides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slides-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .slides-caption h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .slides-caption p {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .accordion-btn {
+      background-color: var(--accent-pink-dark) !important;
+      color: white !important;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 15px 20px !important;
+      border-radius: 10px;
+      border: none;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .accordion-btn:hover {
+      background-color: #9e3658 !important;
+      box-shadow: 0 4px 15px rgba(184, 76, 112, 0.3);
+    }
+
+    .accordion-content {
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      background-color: var(--bg-accent);
+      padding: 20px 30px !important;
+      margin-bottom: 25px;
+    }
+
+    .accordion-content h4 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--accent-pink-dark);
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    .accordion-content p {
+      font-family: var(--font-sans);
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* MENÚ CARTA DE PACKS */
+    .menu-container {
+      background-color: white;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-soft);
+      padding: 50px;
+      margin-top: 80px;
+      margin-bottom: 80px;
+    }
+
+    .menu-item-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .menu-item-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .menu-item-spacer {
+      flex-grow: 1;
+      border-bottom: 1px dashed var(--border-color);
+      margin: 0 15px;
+    }
+
+    .menu-item-price {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-pink-dark);
+      white-space: nowrap;
+    }
+
+    .menu-item-desc {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: -16px;
+      margin-bottom: 20px;
+      max-width: 90%;
+    }
+
+    .menu-img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* MODAL DE RESERVAS PERSONALIZADO */
+    .modal-card {
+      border-radius: 24px !important;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25) !important;
+      border: 1px solid var(--border-color);
+      max-width: 500px;
+      margin: 10% auto;
+    }
+
+    .modal-header-gourmet {
+      background-color: var(--bg-accent) !important;
+      color: var(--accent-pink-dark) !important;
+      padding: 30px !important;
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .modal-header-gourmet h2 {
+      font-family: var(--font-display);
+      font-weight: bold;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .modal-body-gourmet {
+      background-color: white !important;
+      padding: 40px !important;
+      text-align: center;
+    }
+
+    .modal-footer-gourmet {
+      background-color: var(--bg-accent) !important;
+      padding: 20px !important;
+      border-top: 1px dashed var(--accent-pink);
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* FORMULARIO DE CONTACTO */
+    .contact-container {
+      background-color: white;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-soft);
+      padding: 50px;
+      margin-top: 80px;
+      margin-bottom: 80px;
+    }
+
+    .form-input-gourmet {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s ease;
+      background-color: #fcf9f9;
+    }
+
+    .form-input-gourmet:focus {
+      border-color: var(--accent-pink);
+      background-color: white;
+      box-shadow: 0 0 10px rgba(216, 112, 147, 0.1);
+    }
+
+    .form-label-gourmet {
+      display: block;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-submit-gourmet {
+      background-color: var(--accent-pink-dark);
+      color: white;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 14px 35px;
+      border-radius: 30px;
+      border: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 15px;
+    }
+
+    .btn-submit-gourmet:hover {
+      background-color: #9e3658;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184, 76, 112, 0.35);
+    }
+
+    /* HORARIOS Y UBICACIÓN */
+    .info-card-gourmet {
+      background-color: var(--bg-accent);
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      padding: 40px;
+      height: 100%;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .info-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--accent-pink-dark);
+      font-weight: bold;
+      margin-bottom: 20px;
+      border-bottom: 1px dashed var(--accent-pink);
+      padding-bottom: 10px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 18px;
+      font-family: var(--font-sans);
+      font-size: 15px;
+    }
+
+    .info-icon {
+      font-size: 20px;
+      min-width: 25px;
+    }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 8px 20px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      margin-top: 15px;
+      color: var(--text-muted);
+    }
+
+    .schedule-day {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* NOTIFICACIÓN FLOTANTE (ALERTA DE CONTACTO) */
+    .contact-notification {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #e6fffa;
+      border: 1px solid #b2f5ea;
+      color: #234e52;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      display: none;
+      align-items: center;
+      gap: 12px;
+      z-index: 2000;
+      animation: heroSlideUp 0.4s ease-out;
+      font-family: var(--font-sans);
+      font-weight: 500;
+    }
+
+    /* ANIMACIONES ADICIONALES */
+    @keyframes heroSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar navbar-container w3-wide w3-card">
+      <a href="#home" class="brand-link">L'Héritage d'Antoine</a>
+
+      <!-- Botón de menú para pantallas pequeñas -->
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium w3-round"
+        onclick="myFunction('navDemo')" style="padding: 6px 12px; margin-top: 2px;">&#9776;</a>
+
+      <!-- Right-sided navbar links. Hide them on small screens -->
+      <div class="w3-right w3-hide-small">
+        <a href="#home" class="w3-bar-item w3-button nav-link">Inicio</a>
+        <a href="#about" class="w3-bar-item w3-button nav-link">Historia</a>
+        <div class="w3-dropdown-hover" style="background: transparent;">
+          <div class="w3-dropdown-content w3-bar-block w3-border w3-round-large"
+            style="min-width: 160px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+            <a href="#vitrina" class="w3-bar-item w3-button nav-link"
+              style="text-align: left; text-transform: none;">Vitrina en Vivo</a>
+            <a href="#galeria" class="w3-bar-item w3-button nav-link"
+              style="text-align: left; text-transform: none;">Galería</a>
+            <a href="#slides" class="w3-bar-item w3-button nav-link"
+              style="text-align: left; text-transform: none;">Slideshow</a>
+          </div>
+        </div>
+        <a href="#menu" class="w3-bar-item w3-button nav-link">Menu</a>
+        <a href="#contact" class="w3-bar-item w3-button nav-link">Contacto</a>
+        <a href="admin.html" class="w3-bar-item w3-button nav-link nav-link-admin">🔒 Área Empleados</a>
+      </div>
+    </div>
+
+    <!-- Menú móvil (oculto por defecto) -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-card">
+      <a href="#home" class="w3-bar-item w3-button" onclick="myFunction('navDemo')">Inicio</a>
+      <a href="#about" class="w3-bar-item w3-button" onclick="myFunction('navDemo')">Historia</a>
+      <a href="#vitrina" class="w3-bar-item w3-button" onclick="myFunction('navDemo')">Vitrina en Vivo</a>
+      <a href="#galeria" class="w3-bar-item w3-button" onclick="myFunction('navDemo')">Galería</a>
+      <a href="#slides" class="w3-bar-item w3-button" onclick="myFunction('navDemo')">Slideshow</a>
+      <a href="#menu" class="w3-bar-item w3-button" onclick="myFunction('navDemo')">Menu</a>
+      <a href="#contact" class="w3-bar-item w3-button" onclick="myFunction('navDemo')">Contacto</a>
+      <a href="#where" class="w3-bar-item w3-button" onclick="myFunction('navDemo')">Ubicación</a>
+      <a href="admin.html" class="w3-bar-item w3-button w3-text-pink"
+        style="font-weight: bold; border-top: 1px solid #eee;" onclick="myFunction('navDemo')">🔒 Área Empleados</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero-section" id="home">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-subtitle">Tradición Artesanal</span>
+      <h1 class="hero-title">L'Héritage d'Antoine</h1>
+      <p class="hero-description">El arte del macaron de lujo francés en el corazón de Valencia. Elaborados diariamente
+        en nuestro obrador con almendra seleccionada y rellenos gourmet de temporada.</p>
+      <div class="hero-cta-buttons">
+        <a href="#vitrina" class="hero-btn hero-btn-primary">✨ Vitrina en Vivo</a>
+        <a href="#menu" class="hero-btn hero-btn-secondary">☕ Ver Carta de Packs</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page content -->
+  <div class="w3-content" style="max-width:1100px">
+
+    <!-- Vitrina de Macarons en Vivo -->
+    <section id="vitrina" class="vitrina-section">
+      <span class="section-subtitle">Frescura Diaria</span>
+      <h2 class="section-title w3-text-pink">Nuestra Vitrina de Macarons</h2>
+      <p class="w3-large w3-text-dark-grey"
+        style="font-family: 'Playfair Display', serif; font-style: italic; max-width: 600px; margin: 10px auto;">
+        Elaborados diariamente con almendras seleccionadas, merengue francés y rellenos artesanales en nuestro obrador.
+      </p>
+
+      <div id="status-indicator"
+        style="font-size: 12px; color: #7c6868; margin-top: 10px; font-style: italic; margin-bottom: 15px;">
+        🔍 Conectando con el servidor de vitrina...
+      </div>
+
+      <!-- Rejilla de Catálogo -->
+      <div id="contenedor-macarons" class="vitrina-grid">
+        <p class="w3-text-grey w3-large" style="padding: 40px 0;">Cargando vitrina de macarons. Por favor, espera...</p>
+      </div>
+    </section>
+
+    <!-- About Section (El Origen) -->
+    <div class="about-container" id="about">
+      <div class="w3-row">
+        <div class="w3-col m6 w3-padding-large about-image-wrapper">
+          <img src="chicoguapo.jpg" class="about-img" alt="Marie Laurent y el obrador de Antoine en Valencia">
+        </div>
+
+        <div class="w3-col m6 about-content">
+          <span class="section-subtitle">Nuestra Historia</span>
+          <h2 class="section-title">El Origen de "L'Héritage d'Antoine"</h2>
+          <p class="about-text">
+            Sin dinero para un local en el centro, Antoine fundó su primera "pastelería" en el garaje de su casa en un
+            barrio obrero. No tenía vitrinas decoradas, solo una mesa de mármol recuperada de una demolición y un horno
+            eléctrico que hacía saltar los fusibles cada noche.
+          </p>
+          <p class="about-text" style="margin-top: 15px;">
+            El origen fue una lucha contra la humedad. Antoine pasaba las madrugadas estudiando cómo el clima de la
+            ciudad afectaba la "croûte" (la cáscara) del macaron. Sus primeros clientes no fueron críticos culinarios,
+            sino los vecinos que, atraídos por el olor a azúcar tostada, intercambiaban herramientas o ayuda por una
+            caja de aquellas galletas imperfectas pero deliciosas.
+          </p>
+          <p class="about-text" style="margin-top: 15px;">
+            La pastelería "oficial" nació gracias a un error afortunado. Antoine olvidó una bandeja de macarons de
+            lavanda y miel en la ventana del garaje. Un chef de renombre que pasaba por allí, perdido tras una avería en
+            su coche, probó uno por curiosidad y quedó prendado del obrador.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 60px 0;">
+
+    <!-- Galería de Fotos Gourmet -->
+    <section class="galeria-section" id="galeria">
+      <div class="w3-center">
+        <span class="section-subtitle">Momento Dulce</span>
+        <h2 class="section-title">Nuestra Galería Gourmet</h2>
+      </div>
+      <div class="galeria-grid">
+        <div class="galeria-item">
+          <img src="background-colored-macaroons-assortment-macro-horizo-table-horizontal-95727932.webp"
+            alt="Surtido de macarons gourmet">
+        </div>
+        <div class="galeria-item">
+          <img src="macarons-pila-horizontal-colorida-de-aislada-en-fondo-negro-con-reflexiones-133873213.webp"
+            alt="Pila de macarons sobre negro">
+        </div>
+        <div class="galeria-item">
+          <img src="descargar.webp" alt="Detalle de macarons">
+        </div>
+        <div class="galeria-item">
+          <img src="lemon-macarons-new-recipe-image.jpg" alt="Macarons de limón receta fresca">
+        </div>
+        <div class="galeria-item">
+          <img src="macaron_aardbei_glutenvrij.jpg" alt="Macaron de fresa sin gluten">
+        </div>
+        <div class="galeria-item">
+          <img src="coconut-macaroons.jpg" alt="Macarons de coco artesanales">
+        </div>
+        <div class="galeria-item">
+          <img src="Pastelmacarons_featured.jpg" alt="Pastel y macarons de vitrina">
+        </div>
+        <div class="galeria-item">
+          <img src="italian_macaron_Featured.webp" alt="Macarons estilo italiano">
+        </div>
+        <div class="galeria-item">
+          <img
+            src="macarons-pila-blanco.webp"
+            alt="Variedad de macarons sobre blanco">
+        </div>
+        <div class="galeria-item">
+          <img src="images.jpeg" alt="Detalle artístico macarons">
+        </div>
+      </div>
+    </section>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 60px 0;">
+
+    <!-- Slides de Productos -->
+    <div class="slides-container" id="slides">
+      <div class="w3-center" style="margin-bottom: 30px;">
+        <span class="section-subtitle">Exposición</span>
+        <h2 class="section-title">Nuestras Variedades Destacadas</h2>
+      </div>
+
+      <!-- Accordion -->
+      <button onclick="myFunction('Demo1')" class="w3-btn w3-block accordion-btn w3-left-align">Ver Sabores Disponibles
+        por Categoría</button>
+      <div id="Demo1" class="w3-container w3-hide accordion-content">
+        <h4>Exóticos</h4>
+        <p>Pistacho, Melocotón, Maracuyá, Fruta del Dragón</p>
+        <h4>Clásicos</h4>
+        <p>Vainilla de Madagascar, Fresa, Chocolate Negro, Napolitano</p>
+        <h4>Especiales</h4>
+        <p>Dulce de Leche, Coco Rallado, Kinder Bueno, Cheesecake de Fresa</p>
+      </div>
+
+      <div style="margin-top: 30px; position: relative;">
+        <div class="mySlides w3-animate-opacity">
+          <img src="chocolate-macarons-salted-caramel-8-of-11.jpg" alt="Macarons de caramelo salado">
+          <div class="slides-caption w3-hide-small">
+            <h3>Sabores Tradicionales</h3>
+            <p>“La vida es incierta, cómete el postre primero”</p>
+          </div>
+        </div>
+        <div class="mySlides w3-animate-opacity">
+          <img src="Pastelmacarons_featured.jpg" alt="Expositor de tartas y macarons">
+          <div class="slides-caption w3-hide-small">
+            <h3>Presentaciones Exclusivas</h3>
+            <p>"Cada bocado de nuestros pasteles es un viaje al paraíso de los sabores"</p>
+          </div>
+        </div>
+        <div class="mySlides w3-animate-opacity">
+          <img src="Macarons-px-1200-01-1.jpg" alt="Detalle de macarons de colores">
+          <div class="slides-caption w3-hide-small">
+            <h3>El Sabor de París</h3>
+            <p>"Déjate seducir por el dulce sabor de nuestros exquisitos macarons"</p>
+          </div>
+        </div>
+        <div class="mySlides w3-animate-opacity">
+          <img src="coconut-macaroons.jpg" alt="Macarons de coco gourmet">
+          <div class="slides-caption w3-hide-small">
+            <h3>Especialidades Rústicas</h3>
+            <p>“Texturas inigualables, elaboradas con amor en el obrador de Antoine”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 60px 0;">
+
+    <!-- Menu Section (Packs Gourmet) -->
+    <div class="menu-container" id="menu">
+      <div class="w3-row">
+        <div class="w3-col l6 w3-padding-large">
+          <div style="margin-bottom: 30px;">
+            <span class="section-subtitle">Exquisiteces</span>
+            <h2 class="section-title">Nuestros Packs Gourmet</h2>
+          </div>
+
+          <div style="margin-top: 20px;">
+            <div class="menu-item-row">
+              <span class="menu-item-name">Le Petit Plaisir</span>
+              <span class="menu-item-spacer"></span>
+              <span class="menu-item-price">11.99 €</span>
+            </div>
+            <p class="menu-item-desc">Un detalle perfecto. Contiene 4 macarons de los sabores clásicos (Vainilla,
+              Chocolate, Frambuesa y Café).</p>
+
+            <div class="menu-item-row">
+              <span class="menu-item-name">L'Évasion</span>
+              <span class="menu-item-spacer"></span>
+              <span class="menu-item-price">19.99 €</span>
+            </div>
+            <p class="menu-item-desc">Una caja diseñada para compartir. 8 macarons que incluyen la selección clásica más
+              dos sabores de temporada.</p>
+
+            <div class="menu-item-row">
+              <span class="menu-item-name">Le Gourmand</span>
+              <span class="menu-item-spacer"></span>
+              <span class="menu-item-price">27.99 €</span>
+            </div>
+            <p class="menu-item-desc">Para los amantes de la variedad. 12 macarons con un recorrido completo por todas
+              nuestras texturas y rellenos.</p>
+
+            <div class="menu-item-row">
+              <span class="menu-item-name">La Découverte</span>
+              <span class="menu-item-spacer"></span>
+              <span class="menu-item-price">34.99 €</span>
+            </div>
+            <p class="menu-item-desc">Nuestra caja de autor. 16 macarons presentados en un estuche de diseño, incluyendo
+              sabores experimentales (Limón-Albahaca y Earl Grey).</p>
+
+            <div class="menu-item-row">
+              <span class="menu-item-name">Le Grand Luxe</span>
+              <span class="menu-item-spacer"></span>
+              <span class="menu-item-price">49.99 €</span>
+            </div>
+            <p class="menu-item-desc">La joya de la casa. 24 macarons en una elegante caja de madera de arce artesanal
+              con la historia de Antoine grabada.</p>
+          </div>
+        </div>
+
+        <div class="w3-col l6 w3-padding-large">
+          <img src="unnamed-1.jpg" class="menu-img" alt="Exhibición de packs gourmet de macarons">
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Encargos -->
+    <div class="w3-container w3-center" style="margin-top: 40px; margin-bottom: 40px;">
+      <h2 style="font-family: var(--font-display); font-weight: bold; margin-bottom: 10px;">¿Deseas realizar un pedido
+        directo?</h2>
+      <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 20px;">Llámanos y prepararemos tu selección de
+        macarons para recoger en tienda en menos de una hora.</p>
+      <button onclick="document.getElementById('id01').style.display='block'" class="hero-btn hero-btn-primary"
+        style="font-size: 15px;">📞 Contacto Rápido</button>
+
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content modal-card">
+          <header class="w3-container modal-header-gourmet">
+            <span onclick="document.getElementById('id01').style.display='none'"
+              class="w3-button w3-display-topright w3-hover-red w3-round"
+              style="padding: 10px 18px; font-weight: bold;">&times;</span>
+            <h2>Servicio de Encargo Inmediato</h2>
+          </header>
+          <div class="w3-container modal-body-gourmet">
+            <p style="font-size: 18px; color: var(--accent-pink-dark); font-weight: bold; margin-bottom: 15px;">🍰
+              ¡Promoción Especial de Mostrador!</p>
+            <p style="font-size: 16px; color: var(--text-main); margin-bottom: 20px;">Compra tu segundo pack gourmet a
+              mitad de precio si realizas tu encargo hoy mismo.</p>
+            <div
+              style="background-color: var(--bg-main); border: 1px dashed var(--accent-pink); padding: 15px; border-radius: 12px; display: inline-block; margin-bottom: 10px;">
+              <span
+                style="font-family: var(--font-display); font-size: 26px; font-weight: bold; color: var(--text-main); letter-spacing: 1px;">📞
+                +34 657 893 894</span>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); font-style: italic; margin-top: 10px;">* Disponible de
+              Lunes a Sábado de 09:00 a 20:30.</p>
+          </div>
+          <footer class="w3-container modal-footer-gourmet">
+            <p>L'Héritage d'Antoine — Cada detalle cuenta en nuestra pastelería.</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 60px 0;">
+
+    <!-- Contacto y Ubicación -->
+    <div class="contact-container" id="contact">
+      <div class="w3-row">
+        <!-- Formulario de Contacto -->
+        <div class="w3-col l6 w3-padding-large">
+          <span class="section-subtitle">Escríbenos</span>
+          <h2 class="section-title">Consultas y Pedidos Especiales</h2>
+          <p style="color: var(--text-muted); margin-bottom: 25px;">Para encargos para eventos, catering o dudas sobre
+            alérgenos, ponte en contacto con nosotros.</p>
+
+          <form id="contacto-form" onsubmit="enviarMensajeContacto(event)">
+            <div style="margin-bottom: 15px;">
+              <label class="form-label-gourmet" for="nombre-contacto">Nombre Completo</label>
+              <input class="form-input-gourmet" type="text" id="nombre-contacto" required
+                placeholder="Introduce tu nombre">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+              <label class="form-label-gourmet" for="email-contacto">Correo Electrónico</label>
+              <input class="form-input-gourmet" type="email" id="email-contacto" required
+                placeholder="Introduce tu email">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+              <label class="form-label-gourmet" for="tipo-pedido">Tipo de Solicitud</label>
+              <input class="form-input-gourmet" type="text" id="tipo-pedido"
+                placeholder="Ej: Encargo para boda, Caja personalizada, Alérgenos">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+              <label class="form-label-gourmet" for="mensaje-contacto">Mensaje o Requerimientos</label>
+              <textarea class="form-input-gourmet" id="mensaje-contacto" required style="height: 120px; resize: none;"
+                placeholder="Explica detalladamente qué necesitas..."></textarea>
+            </div>
+
+            <button class="btn-submit-gourmet" type="submit">Enviar Mensaje</button>
+          </form>
+        </div>
+
+        <!-- Ubicación e Información -->
+        <div class="w3-col l6 w3-padding-large" id="where">
+          <div class="info-card-gourmet">
+            <h3 class="info-title">L'Héritage d'Antoine</h3>
+
+            <div class="info-item">
+              <span class="info-icon">📍</span>
+              <div>
+                <strong>Dirección:</strong><br>
+                Calle de la Paz, 16, 46002 Valencia, España
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon">📞</span>
+              <div>
+                <strong>Teléfono:</strong><br>
+                +34 657 893 894
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icon">✉️</span>
+              <div>
+                <strong>Email:</strong><br>
+                contacto@lheritagedantoine.com
+              </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+              <h4
+                style="font-family: var(--font-display); font-size: 16px; font-weight: bold; margin-bottom: 10px; color: var(--accent-pink-dark);">
+                Horarios de Obrador</h4>
+              <div class="schedule-grid">
+                <span class="schedule-day">Lunes a Viernes</span>
+                <span>08:30 - 21:00</span>
+                <span class="schedule-day">Sábados</span>
+                <span>09:00 - 20:30</span>
+                <span class="schedule-day">Domingos</span>
+                <span>10:00 - 15:00</span>
+              </div>
+            </div>
+
+            <div
+              style="margin-top: 30px; border-radius: 12px; overflow: hidden; height: 180px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid var(--border-color);">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3079.866160538965!2d-0.3752538!3d39.4723908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6048b261b0c0ab%3A0x6bfa58a436214227!2sC%20de%20la%20Pau%2C%2016%2C%20Ciutat%20Vella%2C%2046002%20Val%C3%A8ncia%2C%20Valencia%2C%20Spain!5e0!3m2!1sen!2ses!4v1716301234567!5m2!1sen!2ses"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End page content -->
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-center w3-padding-32"
+    style="background-color: var(--bg-accent) !important; border-top: 1px solid var(--border-color); font-family: var(--font-sans); margin-top: 60px;">
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
+        class="w3-hover-text-green">Lilianne R.</a> | <a href="admin.html" class="w3-hover-text-pink"
+        style="font-weight: bold; margin-left: 10px;">🔒 Acceso Empleados (Panel de Control)</a></p>
+  </footer>
+
+  <!-- Alerta de Notificación de Contacto -->
+  <div id="alerta-contacto" class="contact-notification">
+    <span style="font-size: 20px;">✉️</span>
+    <span id="alerta-contacto-texto">¡Mensaje enviado con éxito! Nos pondremos en contacto contigo.</span>
+  </div>
+
+  <script>
+    // Automatic Slideshow - change image every 4 seconds
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      myIndex++;
+      if (myIndex > x.length) { myIndex = 1 }
+      x[myIndex - 1].style.display = "block";
+      setTimeout(carousel, 4000);
+    }
+  </script>
+
+  <script>
+    function myFunction(id) {
+      var x = document.getElementById(id);
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+  </script>
+
+  <script>
+    // Variable global para almacenar los datos en memoria
+    let macaronsDatos = [];
+
+    // Función encargada de pintar las tarjetas gourmet de forma estructurada y de sólo lectura
+    function renderizarTarjetas() {
+      const contenedor = document.getElementById('contenedor-macarons');
+      contenedor.innerHTML = ''; // Limpiar contenedor
+
+      if (macaronsDatos.length === 0) {
+        contenedor.innerHTML = '<p class="w3-text-grey w3-large" style="padding: 20px;">No hay macarons disponibles en la vitrina.</p>';
+        return;
+      }
+
+      macaronsDatos.forEach((macaron) => {
+        const tarjeta = document.createElement('div');
+        tarjeta.className = 'macaron-card w3-animate-zoom';
+
+        // Si no está disponible, se muestra semi-transparente
+        if (!macaron.disponible) {
+          tarjeta.style.opacity = '0.55';
+          tarjeta.style.filter = 'grayscale(40%)';
+        }
+
+        const badgeHTML = macaron.disponible
+          ? `<span class="macaron-badge badge-active">Disponible</span>`
+          : `<span class="macaron-badge badge-empty">Agotado hoy</span>`;
+
+        tarjeta.innerHTML = `
+          <div>
+            <div style="margin-bottom: 5px;">
+              ${badgeHTML}
+            </div>
+            <h3 class="macaron-title">
+              ${macaron.nombre}
+            </h3>
+            <p class="macaron-desc">
+              ${macaron.descripcion}
+            </p>
+          </div>
+          <div>
+            <span class="macaron-price">
+              ${(parseFloat(macaron.precio) || 0).toFixed(2)} €
+            </span>
+          </div>
+        `;
+
+        contenedor.appendChild(tarjeta);
+      });
+    }
+
+    // Cargar datos desde el servidor Express
+    function cargarDatosServidor() {
+      const statusInd = document.getElementById('status-indicator');
+      statusInd.innerHTML = '🔍 Conectando con el servidor de vitrina...';
+
+      fetch('/api/macarons')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Respuesta de red no satisfactoria.');
+          }
+          return response.json();
+        })
+        .then(data => {
+          macaronsDatos = data;
+          renderizarTarjetas();
+          statusInd.innerHTML = '🟢 Vitrina sincronizada en tiempo real';
+          statusInd.style.color = '#2e8b57';
+        })
+        .catch(error => {
+          console.warn('El servidor Express no está disponible. Cargando catálogo offline por defecto.', error);
+
+          statusInd.innerHTML = '⚪ Vitrina en modo catálogo (offline)';
+          statusInd.style.color = '#7c6868';
+
+          // Catálogo de respaldo para que la web siga luciendo premium
+          macaronsDatos = [
+            {
+              "id": 1,
+              "nombre": "Macaron de Frambuesa",
+              "precio": 2.50,
+              "descripcion": "Delicioso macaron relleno de ganache de frambuesa natural.",
+              "disponible": true
+            },
+            {
+              "id": 2,
+              "nombre": "Macaron de Pistacho",
+              "precio": 2.75,
+              "descripcion": "Crujiente y tierno, con auténtico pistacho de Sicilia.",
+              "disponible": false
+            },
+            {
+              "id": 3,
+              "nombre": "Macaron de Chocolate y Sal",
+              "precio": 2.60,
+              "descripcion": "Ganache de chocolate negro 70% con un toque de flor de sal.",
+              "disponible": true
+            },
+            {
+              "id": 4,
+              "nombre": "Macaron de Red Velvet",
+              "precio": 3.40,
+              "descripcion": "Delicioso macaron de terciopelo rojo con crema de queso suave.",
+              "disponible": true
+            }
+          ];
+          renderizarTarjetas();
+        });
+    }
+
+    // Enviar mensaje de contacto asíncronamente
+    function enviarMensajeContacto(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById('nombre-contacto').value;
+      const email = document.getElementById('email-contacto').value;
+
+      // Mostrar alerta flotante premium
+      const alerta = document.getElementById('alerta-contacto');
+      const alertaTexto = document.getElementById('alerta-contacto-texto');
+
+      alertaTexto.textContent = `¡Muchas gracias, ${nombre}! Hemos recibido tu mensaje y te responderemos en ${email} a la brevedad.`;
+      alerta.style.display = 'flex';
+
+      // Resetear el formulario
+      document.getElementById('contacto-form').reset();
+
+      // Ocultar a los 5 segundos
+      setTimeout(() => {
+        alerta.style.display = 'none';
+      }, 5000);
+    }
+
+    // Inicializar carga de datos automática
+    window.addEventListener('DOMContentLoaded', () => {
+      cargarDatosServidor();
+    });
+  </script>
+
+</body>
+
+</html>
