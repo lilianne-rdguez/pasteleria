@@ -1,0 +1,10 @@
+node_modules/
+.git/
+package-lock.json
+package.json
+server.js
+vercel.json
+guion_exposicion.md
+README.md
+.gitignore
+.DS_Store

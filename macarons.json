@@ -40,12 +40,5 @@
         "precio": 2.2,
         "descripcion": "Verdadero sabor a New York Cheesecake",
         "disponible": true
-    },
-    {
-        "id": 7,
-        "nombre": "Macaron de Piña Colada",
-        "precio": 2.1,
-        "descripcion": "Sabor Tropical de cocos cubanos",
-        "disponible": true
     }
 ]

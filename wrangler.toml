@@ -1,0 +1,8 @@
+name = "mi-pasteleria"
+pages_build_output_dir = "."
+compatibility_date = "2026-05-22"
+
+[[kv_namespaces]]
+binding = "PASTELERIA_KV"
+# ID de KV en producción (se puede dejar vacío para desarrollo local o rellenar después de crearlo en Cloudflare)
+id = "PASTELERIA_KV_PLACEHOLDER"
