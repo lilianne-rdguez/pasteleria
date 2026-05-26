@@ -8,12 +8,12 @@ const PORT = process.env.PORT || 3000;
 // Middleware para parsear el cuerpo de las peticiones en formato JSON
 app.use(express.json());
 
-// Servir archivos estáticos desde el directorio actual (donde está micafe.html e imágenes)
+// Servir archivos estáticos desde el directorio actual (donde está index.html e imágenes)
 app.use(express.static(__dirname));
 
-// Ruta raíz que redirige a micafe.html por comodidad
+// Ruta raíz que sirve index.html por comodidad
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'micafe.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Ruta para acceder al panel de control administrativo de los empleados

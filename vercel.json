@@ -44,7 +44,7 @@
     },
     {
       "src": "^/$",
-      "dest": "/micafe.html"
+      "dest": "/index.html"
     },
     {
       "src": "^/(.*)$",
